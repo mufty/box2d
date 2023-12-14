@@ -35,7 +35,7 @@ import box2D.common.math.B2Vec2;
 class B2EdgeShape extends B2Shape
 {
 
-    public override function copy():B2Shape
+    public override function copy():B2EdgeShape
     {
         var s:B2EdgeShape = new B2EdgeShape(this.m_v1, this.m_v2);
         s.m_v1 = this.m_v1;
@@ -57,8 +57,8 @@ class B2EdgeShape extends B2Shape
 	    s.m_cornerConvex1 = this.m_cornerConvex1;
 	    s.m_cornerConvex2 = this.m_cornerConvex2;
 
-	    s.m_nextEdge = this.m_nextEdge;
-	    s.m_prevEdge = this.m_prevEdge;
+	    s.m_nextEdge = this.m_nextEdge != null ? this.m_nextEdge.copy() : null;
+	    s.m_prevEdge = this.m_prevEdge != null ? this.m_prevEdge.copy() : null;
         return s;
     }
 
