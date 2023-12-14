@@ -34,6 +34,34 @@ import box2D.common.math.B2Vec2;
  */
 class B2EdgeShape extends B2Shape
 {
+
+    public override function copy():B2Shape
+    {
+        var s:B2EdgeShape = new B2EdgeShape(this.m_v1, this.m_v2);
+        s.m_v1 = this.m_v1;
+	    s.m_v2 = this.m_v2;
+
+	    s.m_coreV1 = this.m_coreV1;
+	    s.m_coreV2 = this.m_coreV2;
+
+	    s.m_length = this.m_length;
+
+	    s.m_normal = this.m_normal;
+
+	    s.m_direction = this.m_direction;
+
+	    s.m_cornerDir1 = this.m_cornerDir1;
+
+	    s.m_cornerDir2 = this.m_cornerDir2;
+
+	    s.m_cornerConvex1 = this.m_cornerConvex1;
+	    s.m_cornerConvex2 = this.m_cornerConvex2;
+
+	    s.m_nextEdge = this.m_nextEdge;
+	    s.m_prevEdge = this.m_prevEdge;
+        return s;
+    }
+
 	/**
 	 * Returns false. Edges cannot contain points. 
 	 */
