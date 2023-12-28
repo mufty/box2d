@@ -47,7 +47,7 @@ class B2EdgeAndCircleContact extends B2Contact
 	{
 		super.reset(fixtureA, fixtureB);
 		B2Settings.b2Assert(fixtureA == null || fixtureA.getType() == B2ShapeType.EDGE_SHAPE);
-		B2Settings.b2Assert(fixtureB == null || fixtureA.getType() == B2ShapeType.CIRCLE_SHAPE);
+		B2Settings.b2Assert(fixtureB == null || fixtureB.getType() == B2ShapeType.CIRCLE_SHAPE);
 	}
 
 	// ~b2EdgeAndCircleContact() {}
