@@ -26,6 +26,18 @@ import box2D.common.math.B2Math;
 import box2D.common.math.B2Transform;
 import box2D.common.math.B2Vec2;
 
+enum B2ContactFeatureType {
+    e_vertex;
+    e_face;
+}
+
+typedef B2ContactFeature = {
+    indexA:Int,
+    indexB:Int,
+    typeA:B2ContactFeatureType,
+    typeB:B2ContactFeatureType
+}
+
 /**
  * @private
  */

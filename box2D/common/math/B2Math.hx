@@ -169,6 +169,11 @@ class B2Math
 		return C;
 	}
 
+    static public function mulT(A:B2Mat22, v:B2Vec2):B2Vec2
+    {
+        return new B2Vec2(dot(v, A.col1), dot(v, A.col2));
+    }
+
 	static public function abs(a:Float):Float
 	{
 		return a > 0.0 ? a : -a;
