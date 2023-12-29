@@ -294,12 +294,12 @@ class B2PolyAndEdgeContact extends B2Contact
             i1: 0,
             i2: 0,
             sideOffset2: 0,
-            sideNormal2: null,
+            sideNormal2: new B2Vec2(),
             sideOffset1: 0,
-            sideNormal1: null,
-            normal: null,
-            v2: null,
-            v1: null
+            sideNormal1: new B2Vec2(),
+            normal: new B2Vec2(),
+            v2: new B2Vec2(),
+            v1: new B2Vec2()
         };
 
         if (primaryAxis.type == B2EPAxisType.e_edgeA)
@@ -321,6 +321,7 @@ class B2PolyAndEdgeContact extends B2Contact
             var i1:Int = bestIndex;
             var i2:Int = i1 + 1 < tempPolygonB.count ? i1 + 1 : 0;
 
+            clipPoints[0] = new ClipVertex();
             clipPoints[0].v = tempPolygonB.vertices[i1];
             clipPoints[0].id = new B2ContactID();
             /*clipPoints[0].id.cf.indexA = 0;
@@ -328,6 +329,7 @@ class B2PolyAndEdgeContact extends B2Contact
             clipPoints[0].id.cf.typeA = B2ContactFeatureType.e_face;
             clipPoints[0].id.cf.typeB = B2ContactFeatureType.e_vertex;*/
 
+            clipPoints[1] = new ClipVertex();
             clipPoints[1].v = tempPolygonB.vertices[i2];
             clipPoints[1].id = new B2ContactID();
             /*clipPoints[1].id.cf.indexA = 0;
@@ -346,6 +348,7 @@ class B2PolyAndEdgeContact extends B2Contact
         else
         {
             manifold.m_type = B2ManifoldType.FACE_B;
+            clipPoints[0] = new ClipVertex();
             clipPoints[0].v = v2;
             clipPoints[0].id = new B2ContactID();
             /*clipPoints[0].id.cf.indexA = 1;
@@ -353,6 +356,7 @@ class B2PolyAndEdgeContact extends B2Contact
             clipPoints[0].id.cf.typeA = b2ContactFeature::e_vertex;
             clipPoints[0].id.cf.typeB = b2ContactFeature::e_face;*/
 
+            clipPoints[1] = new ClipVertex();
             clipPoints[1].v = v1;
             clipPoints[1].id = new B2ContactID();
             /*clipPoints[1].id.cf.indexA = 0;
@@ -375,8 +379,8 @@ class B2PolyAndEdgeContact extends B2Contact
         ref.sideOffset2 = B2Math.dot(ref.sideNormal2, ref.v2);
 
         // Clip incident edge against reference face side planes
-        var clipPoints1:Array<ClipVertex> = new Array();
-        var clipPoints2:Array<ClipVertex> = new Array();
+        var clipPoints1:Array<ClipVertex> = [new ClipVertex(),new ClipVertex()];
+        var clipPoints2:Array<ClipVertex> = [new ClipVertex(),new ClipVertex()];
 
         // Clip to side 1
         var np:Int = B2Collision.clipSegmentToLine(clipPoints1, clipPoints, ref.sideNormal1, ref.sideOffset1); //np = b2ClipSegmentToLine(clipPoints1, clipPoints, ref.sideNormal1, ref.sideOffset1, ref.i1);
