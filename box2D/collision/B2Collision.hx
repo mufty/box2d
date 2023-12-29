@@ -38,6 +38,11 @@ typedef B2ContactFeature = {
     typeB:B2ContactFeatureType
 }
 
+typedef B2ClipVertex = {
+	v:B2Vec2,
+	id:B2ContactID
+}
+
 /**
  * @private
  */

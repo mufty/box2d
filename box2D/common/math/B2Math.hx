@@ -96,6 +96,12 @@ class B2Math
 		return u;
 	}
 
+    static public function mulTT(A:B2Transform, B:B2Transform):B2Transform {
+        var r = mulMM(A.R, B.R);
+        var p = mulMV(A.R, subtractVV(B.position, A.position));
+        return new B2Transform(p, r);
+    }
+
 	static public function mulX(T:B2Transform, v:B2Vec2):B2Vec2
 	{
 		var a:B2Vec2 = mulMV(T.R, v);
